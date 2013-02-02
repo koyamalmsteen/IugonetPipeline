@@ -12,7 +12,7 @@
   <target name="all" depends="initial_message, clean, init, httpd, final_message" description="All"/>
 
   <target name="initial_message">
-    <echo message="####################&#xA;It takas about 1min.&#xA;####################"/>
+    <echo message="###&#x0A;###&#x0A;&#xA;It takas about 1min.&#xA;&#x0A;###&#x0A;###&#x0A;"/>
 
   </target>
 
@@ -51,7 +51,7 @@
   </target>
 
   <target name="final_message">
-    <echo message="###&#x0A;###&#x0A;&#x0A;Access to http://${ip_address}/geta_client/gss3.html&#x0A;&#x0A;###&#x0A;###&#x0A;"/>
+    <echo message="###&#x0A;###&#x0A;&#x0A;Access to http://${ip_address}/${CruiseControl_prefix}/webapps/cruisecontrol/index.jsp&#x0A;&#x0A;###&#x0A;###&#x0A;"/>
   </target>
 
   <target name="httpd" description="Start httpd">
