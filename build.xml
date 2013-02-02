@@ -9,15 +9,15 @@
     </classpath>
   </taskdef>
 
-  <target name="all" depends="initial_message, clean, init, final_message" description="All"/>
+  <target name="all" depends="initial_message, clean, init, httpd, final_message" description="All"/>
 
   <target name="initial_message">
     <echo message="####################&#xA;It takas about 1min.&#xA;####################"/>
+
   </target>
 
   <target name="clean" description="clean">
     <delete dir="${src}"/>
-    <delete dir="/opt"/>
     <exec executable="/etc/init.d/httpd">
       <arg line="stop"/>
     </exec>
@@ -51,8 +51,16 @@
   </target>
 
   <target name="final_message">
-    <echo message="##### It takas about 1min. #####"/>
+    <echo message="###&#x0A;###&#x0A;&#x0A;Access to http://${ip_address}/geta_client/gss3.html&#x0A;&#x0A;###&#x0A;###&#x0A;"/>
   </target>
 
+  <target name="httpd" description="Start httpd">
+    <exec executable="/etc/init.d/httpd">
+      <arg line="start"/>
+    </exec>
+    <exec executable="chkconfig">
+      <arg line="httpd on"/>
+    </exec>
+  </target>
 
 </project>
