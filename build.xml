@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<project name="Pipeline" default="all" basedir="." xmlns:ac="antlib:net.sf.antcontlib">
+  <property file="build.properties"/>
+  <property environment="env"/>
+
+  <taskdef resource="net/sf/antcontrib/antlib.xml">
+    <classpath>
+      <pathelement location="/usr/share/java/lib/ant-contrib.jar"/>
+    </classpath>
+  </taskdef>
+
+  <target name="all" depends="initial_message, clean, init, expat, icu, darts, chasen, ipadic, stmd, getassoc, gss3, itb, iptables, gem, demo, final_message" description="All"/>
+
+  <target name="clean" description="clean">
+    <delete dir="${src}"/>
+    <delete dir="/opt"/>
+    <exec executable="/etc/init.d/httpd">
+      <arg line="stop"/>
+    </exec>
+    <exec executable="chkconfig">
+      <arg line="httpd off"/>
+    </exec>
+  </target>
+
+  <target name="clean_itb" description="clean itb and temporal files">
+    <delete file="${tmp}/*.tmp1"/>
+    <delete file="${tmp}/*.tmp2"/>
+    <delete file="${tmp}/*.itb"/>
+  </target>
+
+  <target name="init" description="init">
+    <mkdir dir="${src}"/>
+    <exec executable="setenforce">
+      <arg line="0"/>
+    </exec>
+    <exec executable="yum">
+      <arg line="-y install gcc gcc-c++ bison expat-devel libicu-devel rpm-build httpd ruby ruby-devel rubygems libxml2-devel libxslt-devel wireshark wireshark-devel wireshark-gnome"/>
+    </exec>
+  </target>
+
+</project>
