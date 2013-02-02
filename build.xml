@@ -51,6 +51,10 @@
   </target>
 
   <target name="final_message">
+    <exec executable="/bin/bash" outputproperty="ip_address">
+      <arg value="-c"/>
+      <arg value="/sbin/ifconfig | awk '{if (NR==2){sub(&quot;addr:&quot;,&quot;&quot;,$2);print $2}}'"/>
+    </exec>
     <echo message="###&#x0A;###&#x0A;&#x0A;Access to http://${ip_address}/${CruiseControl_prefix}/webapps/cruisecontrol/index.jsp&#x0A;&#x0A;###&#x0A;###&#x0A;"/>
   </target>
 
