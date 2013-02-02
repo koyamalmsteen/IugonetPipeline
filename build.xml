@@ -9,7 +9,11 @@
     </classpath>
   </taskdef>
 
-  <target name="all" depends="initial_message, clean, init, expat, icu, darts, chasen, ipadic, stmd, getassoc, gss3, itb, iptables, gem, demo, final_message" description="All"/>
+  <target name="all" depends="initial_message, clean, init, final_message" description="All"/>
+
+  <target name="initial_message">
+    <echo message="####################&#xA;It takas about 1min.&#xA;####################"/>
+  </target>
 
   <target name="clean" description="clean">
     <delete dir="${src}"/>
@@ -33,9 +37,22 @@
     <exec executable="setenforce">
       <arg line="0"/>
     </exec>
+<!--
     <exec executable="yum">
       <arg line="-y install gcc gcc-c++ bison expat-devel libicu-devel rpm-build httpd ruby ruby-devel rubygems libxml2-devel libxslt-devel wireshark wireshark-devel wireshark-gnome"/>
     </exec>
+-->
   </target>
+
+  <target name="CruiseControl" description="Install Cruise Control">
+    <get src="${src_CruiseControl}" dest="${dst_CruiseControl}" usetimestamp="true"/>
+    <unzip src="${dst_CruiseControl}" dest="${tmp}"/>
+    <move file="${tmp}/${CruiseControl_prefix}" todir="/var/www/html"/>
+  </target>
+
+  <target name="final_message">
+    <echo message="##### It takas about 1min. #####"/>
+  </target>
+
 
 </project>
