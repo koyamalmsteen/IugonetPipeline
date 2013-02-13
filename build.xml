@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <project name="Pipeline" default="all" basedir="." xmlns:ac="antlib:net.sf.antcontlib">
-  <property file="build.properties"/>
   <property environment="env"/>
+  <property file="build.properties"/>
 
   <taskdef resource="net/sf/antcontrib/antlib.xml">
     <classpath>
