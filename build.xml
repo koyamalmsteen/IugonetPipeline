@@ -57,14 +57,6 @@
     <echo message='export PATH=${CATALINA_HOME}/bin:${PATH}&#10;' file="${ENV_SET_FILE}" append="yes"/>
     <get src="${src_tomcat}" dest="${dst_tomcat}" usetimestamp="true"/>
     <unzip src="${dst_tomcat}" dest="${install_dir}"/>
-<!--
-    <exec executable="tar">
-      <arg value="xvzf"/>
-      <arg value="${TEMP_DIR}/${TOMCAT_TGZ}"/>
-      <arg value="- -directory"/>
-      <arg value="${INSTALL_DIR}"/>
-    </exec>
--->
     <exec executable="sudo">
       <arg value="ln"/>
       <arg value="-s"/>
