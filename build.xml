@@ -11,7 +11,7 @@
 
   <target name="all" depends="initial_message, clean, init, httpd, tomcat, final_message" description="All"/>
 
-  <target name="initial_message">
+  <target name="initial_message" description="Show initial message.">
     <echo message="###&#x0A;###&#x0A;&#xA;It takas about 1min.&#xA;&#x0A;###&#x0A;###&#x0A;"/>
 
   </target>
@@ -76,7 +76,7 @@
     </exec>
   </target>
 
-  <target name="final_message">
+  <target name="final_message" description="Show initial message.">
     <exec executable="/bin/bash" outputproperty="ip_address">
       <arg value="-c"/>
       <arg value="/sbin/ifconfig | awk '{if (NR==2){sub(&quot;addr:&quot;,&quot;&quot;,$2);print $2}}'"/>
